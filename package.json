@@ -1,0 +1,30 @@
+{
+  "name": "chrome-gpt-live",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "start": "node --import tsx scripts/start.mjs",
+    "stop": "node scripts/native-host.mjs stop",
+    "companion:install": "node scripts/native-host.mjs install",
+    "companion:uninstall": "node scripts/native-host.mjs uninstall",
+    "build": "npm run build --workspaces --if-present",
+    "dev:extension": "npm run dev --workspace @chrome-gpt-live/extension",
+    "dev:server": "npm run dev --workspace @chrome-gpt-live/server",
+    "test": "npm run test:setup && npm run test --workspaces --if-present",
+    "test:setup": "node --test scripts/setup.test.mjs scripts/native-host.test.mjs",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
